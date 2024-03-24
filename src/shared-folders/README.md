@@ -4,20 +4,27 @@ VMware's article KB 74650 enabling hgfs shared folders on fusion or workstation
 hosted linux VMs for open-vm-tools. This is to get your shared folders auto
 mounting in your Linux guest OS using the systemd mount unit.
 
-Problem is the /mnt/hgfs is owned by root The shared folders under /mnt/hgfs
-are chmod 0700 and owned by user id 502 and group id dialout so you wont be
-able to access without sudo or changing into root.
+Problem is the /mnt/hgfs is owned by root. 
+The shared folders under /mnt/hgfs are chmod 0700 and owned by user id 502 and group id dialout 
+so you wont be able to access without sudo or changing into root.
 
 So we will be mounting shared folders under our home directory for easy access 
 from the terminal setting the user:group to our uid:gid so we can actually access 
 the shared folders.
 
 First we want to install open-vm-tools && open-vm-tools-desktop
+
+```bash
 		sudo apt-get install open-vm-tools &&
 		sudo apt-get install open-vm-tools-desktop
+```
+
 
 Then Create the hgfs folder
+
+```bash
 		sudo mkdir /mnt/hgfs
+```
 
 Create the file /etc/systemd/system/mnt-hgfs.mount
 		sudo nano /etc/systemd/system/mnt-hgfs.mount
