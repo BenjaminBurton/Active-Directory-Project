@@ -15,22 +15,22 @@ the shared folders.
 First we want to install open-vm-tools && open-vm-tools-desktop
 
 ```bash
-		sudo apt-get install open-vm-tools &&
-		sudo apt-get install open-vm-tools-desktop
+sudo apt-get install open-vm-tools &&
+sudo apt-get install open-vm-tools-desktop
 ```
 
 
 Then Create the hgfs folder
 
 ```bash
-		sudo mkdir /mnt/hgfs
+sudo mkdir /mnt/hgfs
 ```
 
 Create the file /etc/systemd/system/mnt-hgfs.mount
 
 
 ```bash
-		sudo nano /etc/systemd/system/mnt-hgfs.mount
+sudo nano /etc/systemd/system/mnt-hgfs.mount
 ```
 		
 	Then add 
@@ -59,7 +59,7 @@ Create the file /etc/systemd/system/mnt-hgfs.mount
     then add the word fuse to the file
 	
 ```bash
-	sudo nano or vi /etc/modules-load.d/open-vm-tools.conf 
+sudo nano or vi /etc/modules-load.d/open-vm-tools.conf 
 ```
 	
 	
@@ -67,7 +67,7 @@ Create the file /etc/systemd/system/mnt-hgfs.mount
 
 
 ```bash	
-	sudo systemctl enable --now mnt-hgfs.mount
+sudo systemctl enable --now mnt-hgfs.mount
 ```
 
 	
@@ -75,14 +75,14 @@ Create the file /etc/systemd/system/mnt-hgfs.mount
 
 
 ```bash	
-	sudo modprobe -v fuse 
+sudo modprobe -v fuse 
 ```
 
 	
 	now check that its being shared by running this command
 
 ```bash
-	ls -ahl /mnt/hgfs
+ls -ahl /mnt/hgfs
 ```
 	
 	then reboot to make sure it still auto mounts
@@ -94,13 +94,13 @@ Create the file /etc/systemd/system/mnt-hgfs.mount
 	so that it will mount to home-username-shared_folders
 	
 ```bash    
-	sudo mv /etc/systemd/system/mnt-hgfs.mount /etc/systemd/system/home-username-shared_folders.mount
+sudo mv /etc/systemd/system/mnt-hgfs.mount /etc/systemd/system/home-username-shared_folders.mount
 ```
 	
 	Then create the folder
 
 ```bash
-	mkdir shared_folders
+mkdir shared_folders
 ```
 	
 	Now we need to edit the contents of the mount file
@@ -109,7 +109,7 @@ Create the file /etc/systemd/system/mnt-hgfs.mount
 	and files 
 	
 ```bash	
-	sudo nano /etc/systemd/system/home-username-shared_folders.mount
+sudo nano /etc/systemd/system/home-username-shared_folders.mount
 ```
 
 Modify the file from the original so we have access
@@ -137,28 +137,28 @@ Modify the file from the original so we have access
 	Now lets do a Daemon reload so the updated config is read
 
 ```bash
-		sudo systemctl daemon-reload
+sudo systemctl daemon-reload
 ```
 
 	
 	Then enable it 
 
 ```bash   
-	sudo systemctl enable --now home-username-shared_folders.mount
+sudo systemctl enable --now home-username-shared_folders.mount
 ```
 	 
 	now your username and id should be the owner
 
 ```bash
-		ls -ahl to check
+ls -ahl to check
 ```
 	
 	Now try and create and remove a folder so we have
 	write access and permissions are set
 
 ```bash
-		mkdir test-copy.txt
-		rm test-copy.txt
+mkdir test-copy.txt
+rm test-copy.txt
 ```
 	
 	now reboot to make sure everything has taken effect
@@ -177,7 +177,7 @@ Modify the file from the original so we have access
 	you will have to type the following command
 	
 ```bash
-	touch $(systemd-escape -p --suffix=mount "/home/username/shared-folders")
+touch $(systemd-escape -p --suffix=mount "/home/username/shared-folders")
 ```
 	
 	that will close the file in single quotes and changes the dash
@@ -187,14 +187,14 @@ Modify the file from the original so we have access
 	config to the new file 
 	
 ```bash
-	cat /etc/systemd/home-username-shared_folders.mount > 'home-username-shared\x2dfolders.mount' 
+cat /etc/systemd/home-username-shared_folders.mount > 'home-username-shared\x2dfolders.mount' 
 ```
 	
 	then enter
 	then
 
 ```bash	
-	cat 'home-username-shared\x2dfolders.mount'
+cat 'home-username-shared\x2dfolders.mount'
 ```
 	
 	then update the file so the line points to the shared
@@ -203,43 +203,43 @@ Modify the file from the original so we have access
 	now make the folder for the mount
 
 ```bash
-		mkdir shared-folders
+mkdir shared-folders
 ```
 	
 	then unmount the shared_folders
 
 ```bash
-		sudo umount shared_folders
+sudo umount shared_folders
 ```
 	
 	then disable the previous config
 
 ```bash
-	sudo systemctl disable --now home-username-shared_folders.mount
+sudo systemctl disable --now home-username-shared_folders.mount
 ```
 	
 	and remove it
 
 ```bash    
-	sudo rm /etc/systemd/system/home-username-shared_folders.mount
+sudo rm /etc/systemd/system/home-username-shared_folders.mount
 ```
 	
 	now we need to move the new config file to the forward /etc
 	
 ```bash
-	sudo mv 'home-username-shared\x2dfolders.mount' /etc/systemd/system
+sudo mv 'home-username-shared\x2dfolders.mount' /etc/systemd/system
 ```
 	
 	now we can enable the service 
 
 ```bash
-		sudo systemctl enable --now home-username-shared\\x2dfolders.mount
+sudo systemctl enable --now home-username-shared\\x2dfolders.mount
 ```
 	
 	and confirm the mount took place
 
 ```bash
-		ls -ahl shared-folders
+ls -ahl shared-folders
 ```
 	
 	
