@@ -27,10 +27,15 @@ Then Create the hgfs folder
 ```
 
 Create the file /etc/systemd/system/mnt-hgfs.mount
+
+
+```bash
 		sudo nano /etc/systemd/system/mnt-hgfs.mount
+```
 		
 	Then add 
-	
+
+```bash	
 	[Unit]
 	Description=VMware mount for hgfs
 	DefaultDependencies=no
@@ -46,25 +51,39 @@ Create the file /etc/systemd/system/mnt-hgfs.mount
 	
 	[Install]
 	WantedBy=multi-user.target
+```
 	
+
 	Now we need to create or modify the file
-	/etc/modules-load.d/open-vm-tools.conf 
+    /etc/modules-load.d/open-vm-tools.conf 
+    then add the word fuse to the file
 	
+```bash
 	sudo nano or vi /etc/modules-load.d/open-vm-tools.conf 
+```
 	
-	Then add the word fuse to the file
 	
 	then we enable and activate the mount service
-	
+
+
+```bash	
 	sudo systemctl enable --now mnt-hgfs.mount
+```
+
 	
 	now lets run this command to make sure its loaded
-	
+
+
+```bash	
 	sudo modprobe -v fuse 
+```
+
 	
 	now check that its being shared by running this command
-	
+
+```bash
 	ls -ahl /mnt/hgfs
+```
 	
 	then reboot to make sure it still auto mounts
 	
@@ -74,19 +93,29 @@ Create the file /etc/systemd/system/mnt-hgfs.mount
 	First off we will rename or move the /mnt/hgfs.mount file
 	so that it will mount to home-username-shared_folders
 	
+```bash    
 	sudo mv /etc/systemd/system/mnt-hgfs.mount /etc/systemd/system/home-username-shared_folders.mount
+```
 	
 	Then create the folder
+
+```bash
 	mkdir shared_folders
+```
 	
 	Now we need to edit the contents of the mount file
 	so it matches our new desired shared_folders location
 	and our uid and gid so we have permissions to the folders
 	and files 
 	
-	
+```bash	
 	sudo nano /etc/systemd/system/home-username-shared_folders.mount
-	
+```
+
+Modify the file from the original so we have access
+
+
+```bash	
 	[Unit]
 	Description=VMware mount for hgfs
 	DefaultDependencies=no
@@ -102,20 +131,35 @@ Create the file /etc/systemd/system/mnt-hgfs.mount
 	
 	[Install]
 	WantedBy=multi-user.target
+```
+
 	
 	Now lets do a Daemon reload so the updated config is read
+
+```bash
 		sudo systemctl daemon-reload
+```
+
 	
 	Then enable it 
+
+```bash   
 	sudo systemctl enable --now home-username-shared_folders.mount
-	
+```
+	 
 	now your username and id should be the owner
+
+```bash
 		ls -ahl to check
+```
 	
 	Now try and create and remove a folder so we have
 	write access and permissions are set
+
+```bash
 		mkdir test-copy.txt
 		rm test-copy.txt
+```
 	
 	now reboot to make sure everything has taken effect
 	SUCCESS
@@ -132,7 +176,9 @@ Create the file /etc/systemd/system/mnt-hgfs.mount
 	
 	you will have to type the following command
 	
+```bash
 	touch $(systemd-escape -p --suffix=mount "/home/username/shared-folders")
+```
 	
 	that will close the file in single quotes and changes the dash
 	to a backslash with x2dfolders.mount
@@ -140,39 +186,60 @@ Create the file /etc/systemd/system/mnt-hgfs.mount
 	so what you want to do is cat the contents from our current
 	config to the new file 
 	
-	cat /etc/systemd/home-username-shared_folders.mount 
-	> 'home-username-shared\x2dfolders.mount' 
+```bash
+	cat /etc/systemd/home-username-shared_folders.mount > 'home-username-shared\x2dfolders.mount' 
+```
 	
 	then enter
 	then
-	
+
+```bash	
 	cat 'home-username-shared\x2dfolders.mount'
+```
 	
 	then update the file so the line points to the shared
 	dash folder instead of shared_folders in the home directory
 	
 	now make the folder for the mount
+
+```bash
 		mkdir shared-folders
+```
 	
 	then unmount the shared_folders
+
+```bash
 		sudo umount shared_folders
+```
 	
 	then disable the previous config
+
+```bash
 	sudo systemctl disable --now home-username-shared_folders.mount
+```
 	
 	and remove it
+
+```bash    
 	sudo rm /etc/systemd/system/home-username-shared_folders.mount
+```
 	
 	now we need to move the new config file to the forward /etc
 	
-	sudo mv 'home-username-shared\x2dfolders.mount' 
-	/etc/systemd/system
+```bash
+	sudo mv 'home-username-shared\x2dfolders.mount' /etc/systemd/system
+```
 	
 	now we can enable the service 
-		sudo systemctl enable --now home-username-
-		shared\\x2dfolders.mount
+
+```bash
+		sudo systemctl enable --now home-username-shared\\x2dfolders.mount
+```
 	
 	and confirm the mount took place
+
+```bash
 		ls -ahl shared-folders
+```
 	
 	
