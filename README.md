@@ -1,6 +1,5 @@
 # Active-Directory-Project
 
-this will have a few VMs
 
 | Virtual Machine                                            | Associated Role                                    |
 | ----------------------------------------------- | ----------------------------------------------------- |
