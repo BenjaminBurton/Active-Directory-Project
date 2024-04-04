@@ -14,6 +14,7 @@ this will have a few VMs
 - Ubuntu (for our Splunk Server)
 - Windows 10 (Target Machine)
 - Windows 2022 Server
+
 `The Documentation for each machine will be in src folder`
 ```
 
