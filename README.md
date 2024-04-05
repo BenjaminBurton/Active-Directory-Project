@@ -17,6 +17,35 @@
 `The Documentation for each machine will be in src folder`
 ```
 
+# Logical Diagram for Active Directory
+
+![Resize](/images/posts/diagram.png?width=200px)
+
+# Diagram Layout
+
+```js
+Create a Logical Diagram ( Using Draw.io )
+	Specify Hardware Requirements
+		Splunk Server ( Running on Ubuntu 22.04 )
+			IP : set static address
+
+		Active Directory Server ( Windows Server 2022 )
+			IP : set static address
+			Splunk Universal Forwarder
+			Sysmon
+
+		Windows 10 ( Target Machine )
+			IP : DHCP
+			Splunk Universal Forwarder
+			Sysmon
+			Atomic Red Team
+
+		Kali Linux ( Attack Machine )
+			IP : set static address
+```
+
+
+
 > Credit : MyDFIR 
 
 
