@@ -19,7 +19,7 @@
 
 # Logical Diagram for Active Directory
 
-![Resize](/images/posts/diagram.png?width=200px)
+![Resize](/images/diagram.png?width=200px)
 
 # Diagram Layout
 
