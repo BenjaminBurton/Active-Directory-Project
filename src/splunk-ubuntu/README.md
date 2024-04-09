@@ -211,6 +211,9 @@ so to use shared-folders instead
 
 CONTINUE AT sudo dpkg splunk if so
 
+
+OTHERWISE FOLLOW BELOW
+
 you will have to type the follow these commands
 
 
