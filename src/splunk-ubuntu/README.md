@@ -204,7 +204,8 @@ so if you want to have a dash in the actual folder name
 then your going to have to delimit it. Now in order
 to do that you have to use a special command
 
-so to use shared-folders instead (SKIP THIS IF YOU DONT MIND THE UNDERSCORE)
+so to use shared-folders instead 
+(SKIP THIS IF YOU DONT MIND THE UNDERSCORE)
 CONTINUE AT sudo dpkg splunk if so
 
 you will have to type the follow these commands
