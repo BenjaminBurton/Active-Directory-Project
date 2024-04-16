@@ -1,3 +1,10 @@
+##### Part 3
+
+	Install && Configure Sysmon && Splunk on
+	Windows Target Machine && Windows Server Machine
+	so they can start collecting telemetry and send logs 
+	over to our splunk server
+
 ## Documentation Installing Splunk on Ubuntu 22.04 on a MacOS
 
 ## VMware KB 74650 enabling shared folders Fix
