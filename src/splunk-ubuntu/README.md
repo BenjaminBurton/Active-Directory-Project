@@ -1,4 +1,4 @@
-##### Part 3
+# Part 3
 
 	Install && Configure Sysmon && Splunk on
 	Windows Target Machine && Windows Server Machine
