@@ -23,7 +23,7 @@
 
 
 # AD Documentation 
-
+```js
 	Database containing Users Computers Groups and many more
 	In order to use Active Directory A server must install a 
 	service called Active Directory Domain Services ( AD DS )
@@ -36,19 +36,28 @@
 	will take Attributes which is Information about the object 
 	(metadata) Example : Object might be user : Bob with an 
 	Attribute of First Name - Bob Last Name - Smith
+```
+
 
 
 # Overview of our 5 parts 
+```js
 	Domain, Network, Splunk Server, Active directory, Attacker
+```
+
 
 
 # Domain : 
+```js
 	Our Domain will have a Logical boundary for organizing and 
 	managing resources within the network. Centralizing user 
 	account management. Providing authentication and authorization 
 	services. Facilitating resource sharing and management.
+```
+
 	
 # Network : 
+```js
 	Routing and switching directing data packets between 
 	devices on the network to ensure proper communication.
 	Connectivity and establishing connections between servers, 
@@ -58,8 +67,11 @@
 	breach.
 	Bandwith management optimizing network performance and 
 	bandwith utilization to ensure efficient data transfer.
+```
+
 	
 # Splunk Server :
+```js
 	We will be doing Log collection gathering log files and event 
 	data from domain controllers, servers, and client machines.
 	Indexing and  organizing log data to facilitate fast 
@@ -69,8 +81,11 @@
 	insights into system performance. Generating reports 
 	and visualizations to present findings and trends derived from 
 	log data analysis.
+```
+
 	
 # Active Directory :
+```js
 	Our AD will provide us with user authentication and verifying 
 	the identity of users and computers attempting to access 
 	network resources. User authorization determinng which 
@@ -82,8 +97,11 @@
 	users, computers, groups, and policies. Replication 
 	synchronizing directory data between domain controllers to 
 	ensure consistency and fault tolerance.
+```
+
 	
 # Attacker :
+```js
 	We will be Exploiting vulnerabilities identifying and 
 	exploring security weaknesses in network services, 
 	applications, or configurations Gaining unauthorized access 
@@ -96,9 +114,11 @@
 	denial-of-service attacks. Evading detection employing 
 	techniques to avoid detection by security measures such as 
 	firewalls, intrusion detection systems, or antivirus software.
+```
+
 
 # Part 1 ( Diagram )
-
+```js
 	Create a Logical Diagram ( Using Draw.io )
 	Specify Hardware Requirements
 		Splunk Server ( Running on Ubuntu 22.04 )
@@ -117,12 +137,15 @@
 			
 		Kali Linux ( Attack Machine )
 			IP : 172.16.188.100
+```
+
 
 # Part 2
 
+```js
 	Use the Hypervisor of your choice
 	Virtualbox or VMware
-	I'll be using VMware
+	Ill be using VMware
 	Download your ISOs
 	Windows 10, Kali Linux, Windows Server 2022, Ubuntu 22.04
 	
@@ -166,6 +189,8 @@
 		Install OpenSSH Server
 		Once installed run the commands
 		sudo apt-get update && sudo apt-get upgrade
+```
+
 
 # Diagram Layout
 
